@@ -1,0 +1,41 @@
+<div class="header">
+  <div class="languageContainer">
+    <button class="refresh" (click)="getWeather()">{{ 'refresh' | translate }}</button>
+    <span class="language">{{ 'select_language' | translate }}</span>
+    <select #lang (change)="onChange($event, lang.value)">
+      <option value="SL">{{ 'slo_language' | translate }}</option>
+      <option value="EN">{{ 'eng_language' | translate }}</option>
+    </select>
+  </div>
+</div>
+<div class="content">
+  <div class="resizable" style="background-color: white;">
+    <ng-template [ngIf]="loaderService.isLoading  | async"> <!-- [ngIfElse]="loadedData" -->
+      <p>
+        {{ 'loading' | translate }}
+      </p>
+    </ng-template>
+    <!-- <ng-template #loadedData> -->
+    <div>
+      <div>
+        <div>{{ cityName }}</div>
+        <div><span class="updatedOn">{{ 'updatedOn' | translate }} {{ timeStamp }}</span></div>
+      </div>
+      <div style=" box-sizing: border-box;width: 100%;float: left;">
+        <div class="float">
+          <p>{{ forecast[0].temp }} °C</p>
+          <p>{{ forecast[0].description }}</p>
+          <p>{{ forecast[0].tempMin }} °C, {{ forecast[0].tempMax }} °C</p>
+        </div>
+        <div class="float">
+          <div *ngFor="let item of forecast | slice:1">
+            {{item.date}}, {{item.description}}, {{item.temp}} °C
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- </ng-template> -->
+    <div>
+    </div>
+  </div>
+</div>

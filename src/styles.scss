@@ -1,0 +1,8 @@
+$color-primary: #eef3c8;
+html,
+body {
+  margin: 0;
+  text-align: center;
+  height: calc(100% - 44px);
+  background-color: $color-primary;
+}
